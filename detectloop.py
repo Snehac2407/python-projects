@@ -1,4 +1,4 @@
-class Node:
+ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
@@ -19,25 +19,25 @@ class LinkedList:
             temp = temp.next
 
     def detectLoop(self):
-        s = set()#its a hashmap
-        temp = self.head
-        while (temp):
-            if (temp in s):
-                return True
-            s.add(temp)
-            temp = temp.next
-        return False
-llist = LinkedList()
-llist.push(20)
-llist.push(4)
-llist.push(15)
-llist.push(10)
-llist.display()
+        fast=self.head
+        slow=self.head
+        while (slow and fast and fast.next):
+            slow=slow.next
+            fast= fast.next.next
+        if slow==fast:
+            return True
+        else:
+            return False
+ l= LinkedList()
+ l.insert_at_beginning(20)
+ l.insert_at_beginning(4)
+l.insert_at_beginning(15)
+l.insert_at_beginning(10)
+l.display()
+l.head.next  = l.head
 
-# Create a loop for testing
-llist.head.next  = llist.head
+ if (l.detectLoop()):
+     print("\nLoop Found")
+ else:
+     print("No Loop ")
 
-if (llist.detectLoop()):
-    print("\nLoop Found")
-else:
-    print("No Loop ")
